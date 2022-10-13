@@ -1,51 +1,37 @@
-import {useState, useEffect, useContext} from 'react';
-import axios from 'axios'
-import { Context } from './Context';
-
-
+import {useState, useEffect} from 'react'
+import axios from "axios"
+import { Link, Route, Routes ,useNavigate } from "react-router-dom";
 
 function Customers() {
-    const [customer, setCustomer] = useState([]);
 
-    //global
-     const {addcustomer, setAddcustomer} = useContext(Context)
-    useEffect(() => {
-        axios(`https://northwind.vercel.app/api/customers`)
-        .then((res) => setCustomer(res.data))
-        .catch((e) => console.log(e))
-    },[]);
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
-    const AddCustomer = (item) =>{
-         //customerı yapıya ekleme
+  useEffect(() =>{
+    axios("https://northwind.vercel.app/api/customers")
+    .then((res)=> setUser(res.data))
+    
+  },[]);
 
-         let kisi = customer.find(q => q.id === item.id);
-         if(kisi){
-            kisi.quantity = kisi.quantity + 1;
-            setCustomer([...customer])
-
-         }
-         else{
-           let newAdd = {
-            id: item.id,
-            companyName: item.companyName,
-            contactName: item.contactName,
-           }
-           setCustomer([...customer, newAdd])
-         }
-    }
+  const gotocd = (id) => {
+    navigate('/customers/' + id)
+  }
 
   return (
-    <div>
-      {
-        customer && customer.map((item,key) => {
-            return <>
-            <li>{item.companyName}</li>
-            <button onClick={() => AddCustomer(item)}>Add Customer</button>
-            </>
-        })
-      }
-    </div>
+ <>
+ <ul>
+ {
+    user &&  user.map((user) => {return <li key={user.id}> <Link to={'/customers/' + user.id}>{user.companyName} <br/> <button onClick={() => gotocd(user.id)}>Go To Customer Detail</button></Link></li>
+    
+    
+  })
+  }
+ 
+ </ul>
+ 
+
+ </>
   )
 }
 
-export default Customers
+export default Customers;
