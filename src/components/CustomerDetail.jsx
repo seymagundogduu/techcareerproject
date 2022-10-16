@@ -10,16 +10,19 @@ function CustomerDetail() {
 
     useEffect(() => {
     axios.get(`https://northwind.vercel.app/api/customers/${id}`)
-    .then(res => setDetail(res.data))
-    }, [])
+    .then(res =>  { setDetail(res.data);
+    } );
+    }, [id]);
     
 
   
     return (
-    <>
-    <h1>Id: {detail.id}</h1>
-    <h1>contactName: {detail.contactName}</h1>
-    <h1>contactTitle: {detail.contactTitle}</h1>
+    < >
+
+    <div style={{display:"flex"}}>  <h1>Id: {detail.id}</h1> </div>
+   <div   style={{display:"flex"}}>   <h1>contactName: {detail.contactName}</h1></div>
+   <div style={{display:"flex"}}>   <h1>contactTitle: {detail.contactTitle}</h1> </div>
+  
     <button onClick={() => navigate(-1)}>Back</button>
 
     
@@ -27,4 +30,4 @@ function CustomerDetail() {
   )
 }
 
-export default CustomerDetail
+export default CustomerDetail;

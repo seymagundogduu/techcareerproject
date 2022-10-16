@@ -1,34 +1,99 @@
+//import "./App.css";
+import "antd/dist/antd.css";
+import Anasayfa from "./components/Anasayfa";
 
-import './App.css';
-import { Link, Route, Routes } from "react-router-dom";
-import Customers from './context/Customers';
-import Login from './context/Login';
-import AddCustomer from './context/AddCustomer';
-import CustomerDetail from './context/CustomerDetail';
+import React, { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-     <h1>Project Header</h1>
-     <ul style={{display:'flex' , justifyContent:'space-between'}}>
-      <li><Link to='/'>Login</Link></li>
-      <li><Link to='/customers'>Customers</Link></li>
-      <li><Link to='/addCustomer'>Add Customer</Link></li>
-   
-     
-     </ul>
-    <Routes>
-      <Route path="/" element={<Login></Login>} ></Route>
-      <Route path="/customers" element={<Customers/>}></Route>
-      <Route path="/customers/:id" element={<CustomerDetail/>} ></Route>
-      <Route path="/addCustomer" element={<AddCustomer/>} ></Route>
-      
-     
-    </Routes>
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const database = [
+    {
+      username: "dgpays@mail.com",
+      password: "123",
+    },
+    {
+      username: "seymagundogdu@gmail.com",
+      password: "1234",
+    }
+  ];
+  const errors = {
+    uname: "invalid username",
+    pass: "invalid password",
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    <h6> © ~ ŞEYMA GÜNDOĞDU </h6>
-   
+    var { username, password } = document.forms[0];
+
+    const userData = database.find((user) => user.username === username.value);
+
+    if (userData) {
+      if (userData.password !== password.value) {
+        setErrorMessages({ name: "password", message: errors.password });
+      } else {
+        setIsSubmitted(true);
+      }
+    } else {
+      setErrorMessages({ name: "username", message: errors.username });
+    }
+  };
+
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
+    );
+
+  const renderForm = (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "35px",
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            color:"blue"
+          }}
+        >
+          Login 
+        </h1>
+        <div>
+          <label style={{ fontSize: "25px" , color: "purple" }}>Mail :</label>
+          <input type="text" name="username" required />
+          {renderErrorMessage("username")}
+        </div>
+        <div>
+          <label style={{ fontSize: "25px" , color:"purple"}}>Password :</label>
+          <input type="password" name="password" required />
+          {renderErrorMessage("pass")}
+        </div>
+        <br></br>
+        <div>
+          <input type="submit" />
+        </div>
+      </form>
     </div>
+  );
+
+  return (
+    <>
+      <div>
+        <div>
+          {isSubmitted ? (
+            <div>
+              <Anasayfa />
+            </div>
+          ) : (
+            renderForm
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 
