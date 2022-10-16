@@ -16,26 +16,25 @@ Login Mail
      { 
     mail: dgpays@mail.com
     password: 123
-    }
-
-]
+    } ]
 <br/>
-<img src="image/login.png" alt="login">
+
+<img src="./src/image/login.png" alt="login">
 <br/>
 
 
 ### Customers Page:
-<img src="image/customers.png" alt="customers">
+<img src="./src/image/customers.png" alt="customers">
 <br/>
 
 ### Customer Detail Page:
-<img src="image/customerdetail.png" alt="customerdetail">
+<img src="./src/image/customerdetail.png" alt="customerdetail">
 <br/>
 
 ### Add Customer Page:
-<img src="image/addcustomer.png" alt="addcustomer">
+<img src="./src/image/addcustomer.png" alt="addcustomer">
 <br/>
 
 ### Customer Update Page:
-<img src="image/customerupdate.png" alt="customerupdate">
+<img src="./src/image/customerupdate.png" alt="customerupdate">
 <br/>
