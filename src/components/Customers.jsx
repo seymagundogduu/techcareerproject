@@ -3,6 +3,10 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { Button, Table } from 'antd';
 
+import React from 'react'
+import confirm from 'antd/lib/modal/confirm';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 
 function Customers() {
 
@@ -25,7 +29,31 @@ function Customers() {
   const updateItem = (id) => {
     navigate("/customers/update/" + id);
   };
+  const deleteItem = (id) => {
+    confirm({
+      title: 'Are you sure delete this customer?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Some descriptions',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
 
+      onOk() {
+          setLoading(true)
+          axios.delete(`https://northwind.vercel.app/api/customers/${id}`)
+              .then(res => {
+                  setUser(res.data);
+              })
+      },
+
+      onCancel() {
+          console.log('Cancel');
+      },
+  });
+
+
+
+}
   let columns = [
     {
       title: "Id",
@@ -52,7 +80,12 @@ function Customers() {
     {
       title: "Update",
       dataIndex: "id",
-      render: (id) =>  <Button onClick={() => updateItem(id)} type="danger">  Update </Button>
+      render: (id) =>  <Button onClick={() => updateItem(id)} type="primary">  Update </Button>
+    },
+    {
+      title: "Delete",
+      dataIndex: "id",
+      render: (id) =>  <Button onClick={() => deleteItem(id)} type="danger">  Delete </Button>
     }
   
     
