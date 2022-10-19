@@ -27,8 +27,11 @@ Login Mail
 <img src="./src/image/customers.png" alt="customers">
 <br/>
 
+### Delete Button Add:
+<img src="./src/image/customers.png" alt="customers">
+
 ### Customer Detail Page:
-<img src="./src/image/customerdetail.png" alt="customerdetail">
+<img src="./src/image/deletebutton.png" alt="customerdelete">
 <br/>
 
 ### Add Customer Page:

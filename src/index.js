@@ -10,7 +10,7 @@ import Customers from './components/Customers';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <Customers/>
+    <App/>
   </BrowserRouter>
 );
 
