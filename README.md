@@ -28,10 +28,10 @@ Login Mail
 <br/>
 
 ### Delete Button Add:
-<img src="./src/image/customers.png" alt="customers">
+<img src="./src/image/deletebutton.png" alt="customers">
 
 ### Customer Detail Page:
-<img src="./src/image/deletebutton.png" alt="customerdelete">
+<img src="./src/image/customerdetail.png" alt="customerdelete">
 <br/>
 
 ### Add Customer Page:
